@@ -12,7 +12,7 @@ public class WeatherClient {
     public static String getWeatherData(String apiKey, String lat, String lon, String limit) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL.concat("?lat").concat(lat).concat("&lon=").concat(lon).concat("&limit=").concat(limit)))
+                .uri(URI.create(API_URL.concat("?lat=").concat(lat).concat("&lon=").concat(lon).concat("&limit=").concat(limit)))
                 .GET()
                 .header(HEADER_NAME, apiKey)
                 .build();
