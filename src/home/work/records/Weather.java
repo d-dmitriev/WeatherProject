@@ -13,7 +13,7 @@ public record Weather(int now, String now_dt, Info info, Fact fact, Forecast[] f
     public double getAverageTemperature() {
         return Arrays
                 .stream(this.forecasts())
-                .map(Forecast::getAverageTemperature).mapToDouble(x -> x).average().orElseThrow();
+                .mapToDouble(Forecast::getAverageTemperature).average().orElseThrow();
     }
 
     public static Weather buildWeatherFromJson(String json) throws JsonProcessingException {
