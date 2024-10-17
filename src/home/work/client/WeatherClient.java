@@ -6,13 +6,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class WeatherClient {
-    private static final String API_URL = "https://api.weather.yandex.ru/v2/forecast";
+    private static final String API_URL = "https://api.weather.yandex.ru/v2/forecast?lat=%s&lon=%s&limit=%s";
     private static final String HEADER_NAME = "X-Yandex-Weather-Key";
 
-    public static String getWeatherData(String apiKey, String lat, String lon, String limit) throws Exception {
+    public static String getWeatherData(String apiKey, double lat, double lon, int limit) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL.concat("?lat=").concat(lat).concat("&lon=").concat(lon).concat("&limit=").concat(limit)))
+                .uri(URI.create(API_URL.formatted(lat, lon, limit)))
                 .GET()
                 .header(HEADER_NAME, apiKey)
                 .build();
